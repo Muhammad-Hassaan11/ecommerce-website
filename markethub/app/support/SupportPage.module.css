@@ -1,0 +1,65 @@
+.pageWrapper {
+  padding-block: var(--space-12);
+}
+
+.header {
+  margin-bottom: var(--space-12);
+  text-align: center;
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+.iconCircle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-accent-glow);
+  color: var(--color-accent);
+  margin-bottom: var(--space-6);
+}
+
+.title {
+  margin-bottom: var(--space-4);
+}
+
+.subtitle {
+  font-size: var(--text-lg);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+  }
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.sectionIcon {
+  color: var(--color-accent);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+}
+
+.stickySide {
+  position: sticky;
+  top: 100px; /* Below navbar + space */
+}

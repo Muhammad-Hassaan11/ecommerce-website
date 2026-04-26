@@ -1,0 +1,139 @@
+/* ========== Backdrop ========== */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  z-index: 900;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.backdrop.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ========== Panel ========== */
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+  max-width: 85vw;
+  background: var(--color-bg-surface);
+  border-right: 1px solid var(--color-border);
+  z-index: 901;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 4px 0 32px rgba(0, 0, 0, 0.4);
+}
+.menu.open {
+  transform: translateX(0);
+}
+
+/* ========== Header ========== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.menuTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+}
+
+.closeBtn {
+  color: var(--color-text-secondary);
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.closeBtn:hover {
+  background: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+}
+
+/* ========== Nav ========== */
+.nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4) var(--space-3);
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.linkItem {
+  opacity: 0;
+  animation: slideFadeIn 0.4s ease forwards;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-4);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-md);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.link:hover {
+  background: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+}
+
+/* ========== Footer ========== */
+.footer {
+  padding: var(--space-5) var(--space-6);
+  border-top: 1px solid var(--color-border-subtle);
+}
+.footer p {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* ========== Sell Button ========== */
+.sellLink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  padding: var(--space-4) var(--space-4);
+  border-radius: var(--radius-md);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-md);
+  color: #fff;
+  background: var(--color-accent);
+  box-shadow: 0 0 20px var(--color-accent-glow);
+  transition: background var(--transition-fast), box-shadow var(--transition-fast);
+}
+.sellLink:hover {
+  background: var(--color-accent-dim);
+  box-shadow: 0 0 28px var(--color-accent-glow);
+}
+
+/* ========== Animation ========== */
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
