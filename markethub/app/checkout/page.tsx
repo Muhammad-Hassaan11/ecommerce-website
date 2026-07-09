@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { getCart, clearCart } from "@/lib/utils/cart";
 import { createOrder } from "@/lib/utils/orders";
+import { fetchAllProducts } from "@/lib/utils/productsClient";
 import type { EnrichedProduct, ShippingAddress, OrderItem } from "@/types";
 import styles from "./page.module.css";
 
@@ -49,8 +50,7 @@ export default function CheckoutPage() {
     }
 
     try {
-      const res = await fetch("/api/products");
-      const allProducts: EnrichedProduct[] = await res.json();
+      const allProducts = await fetchAllProducts();
       const enriched = cartItems
         .map((ci) => {
           const product = allProducts.find((p) => p.slug === ci.slug);

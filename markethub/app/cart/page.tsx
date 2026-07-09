@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Trash2, Plus, Minus, ArrowRight, ShoppingBag } from 'lucide-react'
 import { getCart, updateQuantity, removeFromCart, type CartItem as CartItemType } from '@/lib/utils/cart'
+import { fetchAllProducts } from '@/lib/utils/productsClient'
 import type { EnrichedProduct } from '@/types'
 import styles from './page.module.css'
 
@@ -18,9 +19,7 @@ export default function CartPage() {
 
     const fetchProducts = async () => {
       try {
-        const res = await fetch('/api/products')
-        const data = await res.json()
-        setProducts(data)
+        setProducts(await fetchAllProducts())
       } catch (err) {
         console.error('Failed to load products', err)
       } finally {

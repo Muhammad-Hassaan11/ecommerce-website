@@ -10,56 +10,67 @@
   transition: background-color var(--transition-slow);
 }
 
+/*
+ * Soft-edged radial gradients instead of `filter: blur(80px)` —
+ * a live 80px blur on four animating layers forces the GPU to
+ * re-blur every frame (and the navbar backdrop-filter re-samples it),
+ * which tanks scroll/typing performance. Gradients look the same
+ * and composite for free.
+ */
 .blob {
   position: absolute;
-  filter: blur(80px);
   opacity: 0.15;
-  border-radius: 60% 70% 70% 60% / 60% 60% 70% 70%;
-  animation: float ease-in-out infinite alternate;
+  border-radius: 50%;
+  animation: float 20s ease-in-out infinite alternate;
   will-change: transform;
   transition: background-color var(--transition-slow);
 }
 
 .blob1 {
-  width: 400px;
-  height: 400px;
-  background-color: var(--color-accent);
-  top: -10%;
-  left: -10%;
-  animation-duration: 12s;
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 65%);
+  top: -15%;
+  left: -15%;
+  animation-duration: 24s;
   animation-name: float1;
 }
 
 .blob2 {
-  width: 350px;
-  height: 350px;
-  background-color: var(--color-secondary);
-  top: 40%;
-  right: -5%;
-  animation-duration: 16s;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--color-secondary) 0%, transparent 65%);
+  top: 35%;
+  right: -10%;
+  animation-duration: 32s;
   animation-name: float2;
 }
 
 .blob3 {
-  width: 380px;
-  height: 380px;
-  background-color: var(--color-accent);
-  bottom: -10%;
-  left: 15%;
-  animation-duration: 14s;
+  width: 540px;
+  height: 540px;
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 65%);
+  bottom: -15%;
+  left: 12%;
+  animation-duration: 28s;
   animation-name: float3;
 }
 
 .blob4 {
-  width: 320px;
-  height: 320px;
-  background-color: var(--color-secondary);
-  bottom: 25%;
-  right: 25%;
-  animation-duration: 10s;
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, var(--color-secondary) 0%, transparent 65%);
+  bottom: 20%;
+  right: 22%;
+  animation-duration: 20s;
   animation-name: float4;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .blob {
+    animation: none;
+  }
+}
 
 @keyframes float1 {
   0% { transform: translate(0, 0) scale(1); }

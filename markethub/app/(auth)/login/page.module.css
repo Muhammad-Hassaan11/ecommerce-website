@@ -10,34 +10,42 @@
   background: var(--color-bg-base);
 }
 
-/* Animated background orbs */
+/* Animated background orbs — soft radial gradients instead of a live
+   blur(100px) filter, which is expensive to composite every frame
+   (the card's backdrop-filter re-samples it while the orbs animate). */
 .authPage::before,
 .authPage::after {
   content: '';
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
   opacity: 0.4;
   pointer-events: none;
   z-index: 0;
 }
 
 .authPage::before {
-  width: 500px;
-  height: 500px;
-  background: var(--color-accent);
-  top: -150px;
-  left: -100px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 65%);
+  top: -250px;
+  left: -200px;
   animation: authOrbFloat 12s ease-in-out infinite alternate;
 }
 
 .authPage::after {
-  width: 400px;
-  height: 400px;
-  background: var(--color-secondary);
-  bottom: -100px;
-  right: -80px;
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(circle, var(--color-secondary) 0%, transparent 65%);
+  bottom: -180px;
+  right: -160px;
   animation: authOrbFloat 10s ease-in-out infinite alternate-reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .authPage::before,
+  .authPage::after {
+    animation: none;
+  }
 }
 
 @keyframes authOrbFloat {

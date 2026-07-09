@@ -1,8 +1,8 @@
 ---
 slug: "urbancraft"
 name: "UrbanCraft"
-bannerImage: "https://images.unsplash.com/photo-1513694203202-e2d9b68e923e?auto=format&fit=crop&q=80&w=2070"
-logoImage: "https://images.unsplash.com/photo-1600607688969-a5bfcd64bd40?auto=format&fit=crop&q=80&w=200"
+bannerImage: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&q=80&w=2070"
+logoImage: "https://images.unsplash.com/photo-1491637639811-60e2756cc1c7?auto=format&fit=crop&q=80&w=200"
 location: "New York, NY"
 joinedAt: "2024-11-05"
 rating: 4.6

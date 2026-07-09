@@ -40,11 +40,27 @@ export default function RegisterPage() {
 
     setLoading(true);
 
-    // Simulate registration — in a real app, this would POST to an API
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password }),
+      });
 
-    // After successful registration, redirect to login
-    router.push("/login?registered=true");
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Registration failed. Please try again.");
+        setLoading(false);
+        return;
+      }
+
+      // Account created — redirect to login with a success flag
+      router.push("/login?registered=true");
+    } catch {
+      setError("Something went wrong. Please try again.");
+      setLoading(false);
+    }
   };
 
   return (

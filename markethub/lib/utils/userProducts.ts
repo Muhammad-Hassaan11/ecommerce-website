@@ -1,6 +1,7 @@
 'use client'
 
 import type { EnrichedProduct } from '@/types'
+import { addNotification } from './notifications'
 
 const STORAGE_KEY = 'mh_user_products'
 
@@ -62,6 +63,13 @@ export function saveUserProduct(data: {
 
   // Dispatch a custom event so other components can react to the change
   window.dispatchEvent(new CustomEvent('mh_products_changed'))
+
+  addNotification({
+    type: 'listing',
+    title: 'Listing published',
+    message: `"${product.name}" is now live for $${product.price.toFixed(2)}.`,
+    href: `/account`,
+  })
 
   return product
 }

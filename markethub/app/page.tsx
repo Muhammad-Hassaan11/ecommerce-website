@@ -3,8 +3,8 @@ import { getAllVendors } from '@/lib/data/vendors'
 import { getSeedReviewsByProductSlug } from '@/lib/data/reviews'
 import { computeAverageRating } from '@/lib/utils/ratings'
 import BrowsePageClient from '@/components/product/BrowsePageClient'
+import HeroSection from '@/components/home/HeroSection'
 import type { EnrichedProduct } from '@/types'
-import styles from './page.module.css'
 
 export const metadata = {
   title: 'MarketHub — Browse Products',
@@ -35,16 +35,7 @@ export default async function HomePage() {
 
   return (
     <div className="container" style={{ paddingBlock: 'var(--space-8)' }}>
-      <header className={styles.hero} style={{ minHeight: 'auto', paddingBlock: 'var(--space-8)' }}>
-        <div className={styles.heroInner} style={{ textAlign: 'left', alignItems: 'flex-start' }}>
-          <h1 className="animate-slide-up">
-            Discover Products <span className={styles.accent}>You&#39;ll Love</span>
-          </h1>
-          <p className="animate-slide-up delay-100" style={{ maxWidth: '600px' }}>
-            Curated collections from the world&#39;s best independent creators.
-          </p>
-        </div>
-      </header>
+      <HeroSection />
 
       <section className="animate-slide-up delay-200" style={{ marginTop: 'var(--space-8)' }}>
         <BrowsePageClient 

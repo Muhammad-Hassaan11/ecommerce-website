@@ -4,7 +4,7 @@ import { useState, Suspense } from "react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
-import { ShoppingBag, Mail, Lock, Eye, EyeOff, AlertCircle, ArrowRight } from "lucide-react";
+import { ShoppingBag, Mail, Lock, Eye, EyeOff, AlertCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 import styles from "./page.module.css";
 
 function LoginForm() {
@@ -18,6 +18,7 @@ function LoginForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const callbackUrl = searchParams.get("callbackUrl") || "/";
+  const justRegistered = searchParams.get("registered") === "true";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,6 +66,14 @@ function LoginForm() {
           <h1 className={styles.heading}>Welcome back</h1>
           <p className={styles.subtitle}>Sign in to your account to continue</p>
         </div>
+
+        {/* Registration success */}
+        {justRegistered && !error && (
+          <div className={styles.errorBox} style={{ background: 'rgba(34,197,94,0.1)', borderColor: 'var(--color-success, #22c55e)', color: 'var(--color-success, #22c55e)' }}>
+            <CheckCircle2 size={18} />
+            <span>Account created! Sign in with your new credentials.</span>
+          </div>
+        )}
 
         {/* Error message */}
         {error && (
@@ -161,7 +170,7 @@ function LoginForm() {
               />
               <span>Remember me</span>
             </label>
-            <Link href="#" className={styles.forgotLink}>Forgot password?</Link>
+            <Link href="/support" className={styles.forgotLink}>Forgot password?</Link>
           </div>
 
           <button

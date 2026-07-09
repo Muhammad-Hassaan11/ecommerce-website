@@ -5,7 +5,7 @@ price: 185.00
 category: "Lifestyle"
 images: 
   - "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&q=80&w=2080"
-  - "https://images.unsplash.com/photo-1524805444758-089113de6802?auto=format&fit=crop&q=80&w=2070"
+  - "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&q=80&w=2070"
 vendorSlug: "luminary"
 tags: ["Watches", "Accessories", "Minimalist", "Fashion"]
 inStock: true

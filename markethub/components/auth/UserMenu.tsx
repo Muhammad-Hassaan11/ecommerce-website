@@ -2,14 +2,23 @@
 
 import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
-import { User, LogOut, FileText, Settings, ChevronDown } from "lucide-react";
+import { User, LogOut, FileText, Settings, ChevronDown, ShieldCheck } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import { getUserAvatar } from "@/lib/utils/userProfile";
 import styles from "./UserMenu.module.css";
 
 export default function UserMenu() {
   const { data: session, status } = useSession();
   const [isOpen, setIsOpen] = useState(false);
+  const [customAvatar, setCustomAvatar] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setCustomAvatar(getUserAvatar());
+    const handler = () => setCustomAvatar(getUserAvatar());
+    window.addEventListener("mh_avatar_changed", handler);
+    return () => window.removeEventListener("mh_avatar_changed", handler);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -42,8 +51,8 @@ export default function UserMenu() {
         aria-expanded={isOpen}
       >
         <div className={styles.avatar}>
-          {session.user.image ? (
-            <img src={session.user.image} alt={session.user.name || "User"} />
+          {customAvatar || session.user.image ? (
+            <img src={customAvatar || session.user.image!} alt={session.user.name || "User"} />
           ) : (
             <User size={18} />
           )}
@@ -71,6 +80,12 @@ export default function UserMenu() {
             <Settings size={16} />
             <span>Settings</span>
           </Link>
+          {session.user.role === "admin" && (
+            <Link href="/admin" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
+              <ShieldCheck size={16} />
+              <span>Admin Portal</span>
+            </Link>
+          )}
           <div className={styles.divider}></div>
           <button 
             className={`${styles.dropdownItem} ${styles.logoutBtn}`}

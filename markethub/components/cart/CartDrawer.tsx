@@ -5,6 +5,7 @@ import { X, ShoppingBag } from 'lucide-react'
 import Link from 'next/link'
 import styles from './CartDrawer.module.css'
 import { getCart, getCartItemCount, type CartItem as CartItemType } from '@/lib/utils/cart'
+import { fetchAllProducts } from '@/lib/utils/productsClient'
 import CartItem from './CartItem'
 import type { EnrichedProduct } from '@/types'
 
@@ -21,9 +22,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch('/api/products')
-        const data = await res.json()
-        setProducts(data)
+        setProducts(await fetchAllProducts())
       } catch (err) {
         console.error('Failed to load products for cart', err)
       } finally {

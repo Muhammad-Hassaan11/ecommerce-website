@@ -7,6 +7,7 @@ import { ShoppingBag, Heart, Search, Menu, Tag } from 'lucide-react'
 import CartButton from '@/components/cart/CartButton'
 import UserMenu from '@/components/auth/UserMenu'
 import SellModal from '@/components/ui/SellModal'
+import NotificationBell from '@/components/ui/NotificationBell'
 import MobileMenu from './MobileMenu'
 import ThemeToggle from './ThemeToggle'
 import styles from './Navbar.module.css'
@@ -104,6 +105,8 @@ export default function Navbar() {
               </button>
 
               <ThemeToggle />
+
+              <NotificationBell />
 
               <UserMenu />
               <CartButton />

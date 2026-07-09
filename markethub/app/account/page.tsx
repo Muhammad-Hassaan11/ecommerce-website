@@ -3,10 +3,9 @@
 import { useState, useEffect, useRef } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { 
-  User, 
-  Settings, 
-  ShoppingBag, 
+import {
+  User,
+  ShoppingBag,
   Heart, 
   Camera, 
   ShieldCheck, 
@@ -20,7 +19,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { getOrders } from "@/lib/utils/orders";
-import { getCart } from "@/lib/utils/cart";
 import { getUserAvatar, saveUserAvatar, avatarFileToDataUrl } from "@/lib/utils/userProfile";
 import { getUserProducts, deleteUserProduct, type UserProduct } from "@/lib/utils/userProducts";
 import { notifyToast } from "@/components/ui/Toast";
@@ -52,11 +50,17 @@ export default function AccountPage() {
 
   useEffect(() => {
     if (session?.user) {
+      // Load saved profile details, falling back to session values
+      let saved: { name?: string; phone?: string; bio?: string } = {};
+      try {
+        saved = JSON.parse(localStorage.getItem("mh_profile") || "{}");
+      } catch { /* ignore corrupt data */ }
+
       setFormData({
-        name: session.user.name || "",
+        name: saved.name || session.user.name || "",
         email: session.user.email || "",
-        phone: "+1 (555) 000-0000", // Sample data
-        bio: "Explorer of fine products and tech enthusiast." // Sample data
+        phone: saved.phone || "",
+        bio: saved.bio || ""
       });
 
       // Load stats
@@ -94,8 +98,11 @@ export default function AccountPage() {
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);
-    // Simulate API call
-    await new Promise(r => setTimeout(r, 1000));
+    localStorage.setItem("mh_profile", JSON.stringify({
+      name: formData.name,
+      phone: formData.phone,
+      bio: formData.bio,
+    }));
     setIsSaving(false);
     setShowSuccess(true);
     setTimeout(() => setShowSuccess(false), 3000);

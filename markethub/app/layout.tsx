@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 import ToastContainer from '@/components/ui/Toast'
 import { SessionProvider } from '@/components/auth/SessionProvider'
 import { ThemeProvider } from '@/components/layout/ThemeProvider'
-import ChatWidget from '@/components/chat/ChatWidget'
+import ChatWidget from '@/components/chat/ChatWidgetLazy'
 
 export default function RootLayout({
   children,
