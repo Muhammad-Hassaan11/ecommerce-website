@@ -170,7 +170,7 @@ export default function AccountPage() {
             <div className={styles.profileCard}>
               <div className={styles.avatarWrapper}>
                 {displayAvatar ? (
-                  <img src={displayAvatar} alt={session.user.name || "User"} className={styles.avatar} />
+                  <img src={displayAvatar} alt={session?.user?.name || "User"} className={styles.avatar} />
                 ) : (
                   <div className={styles.avatarPlaceholder}>
                     <User size={48} />
@@ -191,8 +191,8 @@ export default function AccountPage() {
                   onChange={handleAvatarChange}
                 />
               </div>
-              <h2 className={styles.userName}>{session.user.name}</h2>
-              <p className={styles.userEmail}>{session.user.email}</p>
+              <h2 className={styles.userName}>{session?.user?.name}</h2>
+              <p className={styles.userEmail}>{session?.user?.email}</p>
 
               <div className={styles.profileStats}>
                 <div className={styles.statItem}>

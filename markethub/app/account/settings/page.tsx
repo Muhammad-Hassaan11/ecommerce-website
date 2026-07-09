@@ -141,8 +141,8 @@ export default function SettingsPage() {
           {/* Sidebar */}
           <aside className={styles.sidebar}>
             <div className={styles.profileCard}>
-              <h2 className={styles.userName} style={{ marginTop: 0 }}>{session.user.name}</h2>
-              <p className={styles.userEmail}>{session.user.email}</p>
+              <h2 className={styles.userName} style={{ marginTop: 0 }}>{session?.user?.name}</h2>
+              <p className={styles.userEmail}>{session?.user?.email}</p>
 
               <div className={styles.accountNav}>
                 <Link href="/account" className={styles.navItem}>
